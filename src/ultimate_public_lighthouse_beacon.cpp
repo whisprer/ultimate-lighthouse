@@ -360,7 +360,7 @@ public:
         
         std::cout << "🚀 ULTIMATE PUBLIC LIGHTHOUSE OPERATIONAL!\n";
         std::cout << "🌍 Broadcasting to the ENTIRE INTERNET on port " << public_port << "\n";
-        std::cout << "📡 Anyone can connect with: nc 161.35.248.233 9876\n";
+        std::cout << "📡 Anyone can connect with: nc 129.212.161.156\n";
         std::cout << "🏰 Visit https://litehaus.online for more info!\n\n";
         
         // Start all worker threads
@@ -429,7 +429,7 @@ private:
    📊 Comprehensive performance metrics and analytics
 
 🌍 Global Access:
-   📡 Connect from anywhere: nc 161.35.248.233 9876
+   📡 Connect from anywhere: nc 129.212.161.156 9876
    🌐 Website: https://litehaus.online
    🚀 FastPing Service: https://fastping.it.com
    💼 Built by: RYO Modular & whispr.dev
@@ -464,7 +464,7 @@ private:
 
 📡 You are now receiving live lighthouse beacon data
 ⚡ Featuring fast regex-based JSON processing
-🌍 Broadcasting from: 161.35.248.233 (litehaus.online)
+🌍 Broadcasting from: 129.212.161.156 (litehaus.online)
 🚀 FastPing Service: https://fastping.it.com
 💼 Built by: RYO Modular & whispr.dev
 
@@ -679,7 +679,7 @@ private:
         std::cout << "   System Uptime: " << uptime.count() << " minutes\n";
         
         std::cout << "\n🌍 PUBLIC ACCESS:\n";
-        std::cout << "   Terminal: nc 161.35.248.233 9876\n";
+        std::cout << "   Terminal: nc 129.212.161.156 9876\n";
         std::cout << "   Website: https://litehaus.online\n";
         std::cout << "   Company: RYO Modular & whispr.dev\n";
         std::cout << "🏰 ================================================================= 🏰\n";
@@ -723,7 +723,7 @@ int main() {
         }
         
         std::cout << "🏰 ULTIMATE PUBLIC LIGHTHOUSE IS BROADCASTING TO THE WORLD!\n";
-        std::cout << "🌍 Global access: nc 161.35.248.233 9876\n";
+        std::cout << "🌍 Global access: nc 129.212.161.156 9876\n";
         std::cout << "🌐 Website: https://litehaus.online\n";
         std::cout << "Press Enter to stop the lighthouse...\n";
         

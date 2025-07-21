@@ -17,7 +17,22 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 class LighthouseDataCollector:
-    def __init__(self, lighthouse_host="161.35.248.233", lighthouse_port=9876):
+    def get_lighthouse_stats():
+    try:
+        with socket.create_connection((self, lighthouse_host="129.212.161.156", lighthouse_port=9876), timeout=1) as s:
+            s.settimeout(2)
+            # if your lighthouse expects input first, do something like:
+            # s.sendall(b'PING\n')
+            raw = s.recv(4096)
+            if not raw:
+                return {"error": "Empty response from lighthouse"}
+            return json.loads(raw.decode())
+    except socket.timeout:
+        return {"error": "Lighthouse timed out"}
+    except (ConnectionRefusedError, socket.error) as e:
+        return {"error": f"Socket error: {e}"}
+    except json.JSONDecodeError:
+        return {"error": "Invalid JSON from lighthouse"}
         self.lighthouse_host = lighthouse_host
         self.lighthouse_port = lighthouse_port
         self.latest_data = None
@@ -207,7 +222,7 @@ def main():
     # Configuration
     API_HOST = '0.0.0.0'  # Listen on all interfaces
     API_PORT = 8080
-    LIGHTHOUSE_HOST = '161.35.248.233'  # Your lighthouse server
+    LIGHTHOUSE_HOST = '129.212.161.156'  # Your lighthouse server
     LIGHTHOUSE_PORT = 9876
     
     print("🏰 Starting Lighthouse API Bridge...")

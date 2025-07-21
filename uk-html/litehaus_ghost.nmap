@@ -1,0 +1,16 @@
+# litehaus_ghost.nmap — stealth-focused scan preset
+
+--top-ports 100                 # Only scan top 100 ports
+-sS                             # TCP SYN scan (stealthy)
+-T2                             # Slow timing for stealth
+--max-retries 2                 # Minimize packet resends
+--max-rate 20                   # Throttle packet rate (low)
+--min-rate 5                    # Absolute minimum speed
+--randomize-hosts               # Avoid sequential IP scanning
+--data-length 22                # Pad packets with random junk
+--spoof-mac 0                  # Randomize MAC address (0 = vendor)
+--source-port 53                # Use DNS source port (often allowed)
+--badsum                        # Send a few bogus checksums (detect poorly filtered hosts)
+--version-light                 # Light service detection
+--disable-arp-ping              # Avoid ARP scan detection
+--defeat-icmp-ratelimit        # Deal with ICMP-limited targets

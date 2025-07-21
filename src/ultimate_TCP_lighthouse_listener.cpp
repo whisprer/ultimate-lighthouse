@@ -365,13 +365,13 @@ void display_help(const char* program_name) {
 Usage: )" << program_name << R"( [SERVER_IP] [PORT]
 
 Arguments:
-   SERVER_IP    IP address of the Ultimate Lighthouse (default: 161.35.248.233)
+   SERVER_IP    IP address of the Ultimate Lighthouse (default: 129.212.161.156)
    PORT         Port number (default: 9876)
 
 Examples:
    )" << program_name << R"(                           # Connect to public lighthouse
-   )" << program_name << R"( 161.35.248.233 9876      # Connect to specific IP:port
-   )" << program_name << R"( localhost 9876           # Connect to local lighthouse
+   )" << program_name << R"( 129.212.161.156 9876      # Connect to specific IP:port
+   )" << program_name << R"( localhost 8081           # Connect to local lighthouse
 
 Features:
    🚀 Fast regex-based JSON parsing
@@ -386,7 +386,7 @@ Features:
 
 int main(int argc, char* argv[]) {
     try {
-        std::string server_ip = "161.35.248.233";  // Default public lighthouse
+        std::string server_ip = "129.212.161.156";  // Default public lighthouse
         int server_port = 9876;
         
         // Parse command line arguments

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 Internet Lighthouse - Global Network Monitoring System</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        @keyframes lighthouse-beam {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .lighthouse-beam {
+            animation: lighthouse-beam 4s linear infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 3s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .terminal-cursor {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .bg-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+        }
+        
+        .offline-indicator {
+            opacity: 0.6;
+            filter: grayscale(50%);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 bg-pattern">
+    
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-indigo-600/20"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-6 py-16">
+            <div class="text-center mb-12">
+                <h1 class="text-6xl font-bold gradient-text mb-6">
+                    🌍 Internet Lighthouse
+                </h1>
+                <p class="text-2xl text-gray-300 mb-4">
+                    Global Network Monitoring System
+                </p>
+                <p class="text-lg text-gray-400 mb-8">
+                    Worldwide Coverage • Real-Time Performance Analysis • Trans-Atlantic Network
+                </p>
+                <div class="flex justify-center items-center space-x-8 text-gray-400 flex-wrap">
+                    <div class="flex items-center space-x-2">
+                        <div id="status-indicator" class="w-3 h-3 rounded-full bg-gray-500"></div>
+                        <span id="status-text">Connecting...</span>
+                    </div>
+                    <span>🚀 Powered by Advanced JSON Processing</span>
+                    <span>⚡ Real-Time Performance Data</span>
+                </div>
+            </div>
+            
+            <!-- Lighthouse Animation -->
+            <div class="flex justify-center mb-12">
+                <div class="relative">
+                    <canvas id="lighthouse-canvas" width="200" height="200" class="drop-shadow-2xl"></canvas>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div class="text-center text-white">
+                            <div id="lighthouse-status" class="text-sm font-semibold">CONNECTING</div>
+                            <div class="text-xs opacity-75">Global</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Performance Metrics -->
+            <div id="performance-grid" class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+                <!-- Metrics will be populated by JavaScript -->
+            </div>
+            
+            <!-- Data Status Banner -->
+            <div id="data-status-banner" class="hidden bg-yellow-600/20 border border-yellow-500/50 rounded-lg p-4 mb-8">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="alert-triangle" class="w-5 h-5 text-yellow-400"></i>
+                    <span class="text-yellow-200" id="data-status-message">Connecting to global lighthouse network...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- What is the Internet Lighthouse -->
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+                    <i data-lucide="server" class="w-8 h-8 text-blue-400 mr-3"></i>
+                    Global Lighthouse Network
+                </h2>
+                <div class="text-gray-300 space-y-4">
+                    <p>
+                        The Internet Lighthouse is a cutting-edge global network monitoring system 
+                        broadcasting real-time connectivity and performance data across multiple continents. 
+                        Think of it as digital lighthouses keeping the internet safe worldwide.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 my-6">
+                        <div class="bg-blue-500/20 p-4 rounded-lg border border-blue-400/30">
+                            <h4 class="font-semibold text-blue-300 mb-2">🇺🇸 US Primary</h4>
+                            <p class="text-sm">North American monitoring from DigitalOcean NYC</p>
+                        </div>
+                        <div class="bg-red-500/20 p-4 rounded-lg border border-red-400/30">
+                            <h4 class="font-semibold text-red-300 mb-2">🇬🇧 London Station</h4>
+                            <p class="text-sm">European coverage from DigitalOcean LON1</p>
+                        </div>
+                        <div class="bg-purple-500/20 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-300 mb-2">🔬 Professional</h4>
+                            <p class="text-sm">Enterprise-grade monitoring and analytics</p>
+                        </div>
+                        <div class="bg-orange-500/20 p-4 rounded-lg">
+                            <h4 class="font-semibold text-orange-300 mb-2">📡 Open Access</h4>
+                            <p class="text-sm">Free public access via terminal connection</p>
+                        </div>
+                    </div>
+                    <p>
+                        <strong class="text-blue-400">All metrics shown are real-time data</strong> from our actual lighthouse beacons worldwide. 
+                        No simulations, no fake numbers - just honest global network monitoring.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- How to Connect -->
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+                    <i data-lucide="terminal" class="w-8 h-8 text-green-400 mr-3"></i>
+                    Connect to Global Network
+                </h2>
+                <div class="space-y-6">
+                    <div class="bg-gray-900 rounded-lg p-4 font-mono text-green-400">
+                        <div class="text-sm text-gray-400 mb-2"># Connect to US Primary</div>
+                        <div class="text-lg">nc 161.35.248.233 9876</div>
+                    </div>
+                    
+                    <div class="bg-gray-900 rounded-lg p-4 font-mono text-green-400">
+                        <div class="text-sm text-gray-400 mb-2"># Connect to London Station</div>
+                        <div class="text-lg">nc 129.212.161.156 9876</div>
+                    </div>
+                    
+                    <div class="bg-blue-900/30 rounded-lg p-4 border border-blue-400/30">
+                        <p class="text-sm text-blue-200 mb-2">🌍 Global Lighthouse Network:</p>
+                        <div class="grid grid-cols-1 gap-2 text-xs font-mono">
+                            <div class="text-gray-300">🇺🇸 Primary: <span class="text-blue-300">161.35.248.233:9876</span></div>
+                            <div class="text-gray-300">🇬🇧 London: <span class="text-red-300">129.212.161.156:9876</span></div>
+                        </div>
+                    </div>
+                    
+                    <button 
+                        id="terminal-demo-btn"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2"
+                    >
+                        <i data-lucide="eye" class="w-5 h-5"></i>
+                        <span>Show Live Global Terminal Demo</span>
+                    </button>
+                    
+                    <div class="text-gray-300 text-sm space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                            <span>Real-time JSON beacon data from both stations</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                            <span>Global network performance metrics</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                            <span>Trans-Atlantic network health monitoring</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                            <span>Free access - no registration required</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Terminal Demo (Hidden by default) -->
+        <div id="terminal-demo" class="mt-12 hidden">
+            <h3 class="text-2xl font-bold text-white mb-6 text-center">
+                🖥️ Live Global Terminal Connection Demo
+            </h3>
+            <div class="bg-gray-900 rounded-lg p-6 font-mono text-sm">
+                <div class="flex items-center mb-4">
+                    <div class="flex space-x-2">
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    </div>
+                    <span class="text-gray-400 ml-4">Terminal - Connect to Global Lighthouse Network</span>
+                </div>
+                <div class="text-green-400">
+                    <div class="mb-2">$ nc 161.35.248.233 9876</div>
+                    <div class="text-blue-400 mb-2">🇺🇸 Welcome to ULTIMATE PUBLIC LIGHTHOUSE BEACON!</div>
+                    <div class="text-purple-400 mb-2">🚀 Global Network Monitoring System - Primary Station</div>
+                    <div class="text-white mb-4">📡 You are now receiving live global lighthouse data...</div>
+                    
+                    <div id="terminal-json" class="bg-gray-800 p-4 rounded border-l-4 border-blue-500">
+                        <div class="text-gray-400">Waiting for real global lighthouse data...</div>
+                    </div>
+                    
+                    <div class="mt-4 text-gray-400">
+                        <div id="terminal-status">⚡ Connecting to global data stream<span class="terminal-cursor">_</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Performance Showcase -->
+        <div id="performance-showcase" class="mt-16">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">
+                🚀 Global Performance Data
+            </h2>
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                <div id="main-metrics" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Main metrics will be populated by JavaScript -->
+                </div>
+                
+                <div class="mt-8 pt-8 border-t border-white/20">
+                    <div id="secondary-metrics" class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        <!-- Secondary metrics will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Global Technology & Network Info -->
+        <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Global Technology Stack -->
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+                    <i data-lucide="code" class="w-6 h-6 text-purple-400 mr-3"></i>
+                    Global Infrastructure
+                </h3>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                        <span class="text-gray-300"><strong class="text-blue-400">DigitalOcean NYC</strong> - Primary US monitoring station</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <span class="text-gray-300"><strong class="text-red-400">DigitalOcean LON1</strong> - European monitoring coverage</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <span class="text-gray-300"><strong class="text-green-400">Multi-threaded Architecture</strong> - Maximum efficiency</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                        <span class="text-gray-300"><strong class="text-orange-400">Honest Metrics</strong> - No fake data, ever</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                        <span class="text-gray-300"><strong class="text-purple-400">Trans-Atlantic Sync</strong> - Coordinated global monitoring</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Network Status -->
+            <div class="bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-md rounded-2xl p-8 border border-blue-400/30">
+                <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+                    <i data-lucide="globe" class="w-6 h-6 text-blue-400 mr-3"></i>
+                    Global Lighthouse Network
+                </h3>
+                <div class="space-y-4">
+                    <p class="text-gray-300">
+                        Our global lighthouse network provides comprehensive internet health visibility across multiple continents with real-time monitoring.
+                    </p>
+                    <div class="bg-black/30 rounded-lg p-4 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-300">🇺🇸 Primary Station</span>
+                            <span id="us-status" class="text-green-400 text-sm">Online</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-300">🇬🇧 London Station</span>
+                            <span id="london-status" class="text-green-400 text-sm">Online</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-300">🌍 Total Coverage</span>
+                            <span class="text-blue-400 text-sm">2 Continents</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-300">🔗 Global Listeners</span>
+                            <span class="text-purple-400 text-sm" id="total-listeners">—</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105">
+                        🇬🇧 View London Station
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="mt-16 text-center">
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                <h3 class="text-2xl font-bold text-white mb-4">Built by Engineering Wizards</h3>
+                <p class="text-gray-300 mb-6">
+                    Need this level of performance for your business? Contact the team behind the magic.
+                </p>
+                <div class="flex justify-center space-x-8 text-gray-400 mb-6 flex-wrap">
+                    <span class="flex items-center space-x-2">
+                        <i data-lucide="globe" class="w-5 h-5"></i>
+                        <span>RYO Modular</span>
+                    </span>
+                    <span class="flex items-center space-x-2">
+                        <i data-lucide="code" class="w-5 h-5"></i>
+                        <span>whispr.dev</span>
+                    </span>
+                    <span class="flex items-center space-x-2">
+                        <i data-lucide="clock" class="w-5 h-5"></i>
+                        <span>Global Since 2025</span>
+                    </div>
+                <div class="text-sm text-gray-500">
+                    🌍 Internet Lighthouse - Global network monitoring across continents
+                </div>
+                <div class="text-xs text-gray-600 mt-4">
+                    ✅ All performance data is real and unmodified - no simulations or fake metrics
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Real lighthouse data state - US & London
+        let usLighthouseData = null;
+        let londonLighthouseData = null;
+        let usConnected = false;
+        let londonConnected = false;
+        let lastUpdate = null;
+        const US_API_URL = '/api/lighthouse';
+        const LONDON_API_URL = 'https://london.litehaus.online/api/lighthouse';
+        
+        // Lighthouse canvas animation with global colors
+        function initLighthouseAnimation() {
+            const canvas = document.getElementById('lighthouse-canvas');
+            const ctx = canvas.getContext('2d');
+            let angle = 0;
+            
+            function drawLighthouse() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw lighthouse beam (global blue/purple theme when online)
+                ctx.save();
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                ctx.rotate(angle);
+                
+                // Create global-themed gradient beam
+                const gradient = ctx.createLinearGradient(0, -100, 0, 100);
+                const opacity = (usConnected || londonConnected) ? 0.8 : 0.3;
+                gradient.addColorStop(0, `rgba(59, 130, 246, ${opacity})`); // Global blue
+                gradient.addColorStop(0.5, `rgba(139, 92, 246, ${opacity * 0.6})`); // Purple
+                gradient.addColorStop(1, `rgba(59, 130, 246, ${opacity * 0.2})`);
+                
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(0, 0, 80, -Math.PI / 6, Math.PI / 6);
+                ctx.lineTo(0, 0);
+                ctx.fill();
+                
+                ctx.restore();
+                
+                // Draw lighthouse structure
+                ctx.fillStyle = (usConnected || londonConnected) ? '#1f2937' : '#374151';
+                ctx.fillRect(canvas.width / 2 - 15, canvas.height / 2 - 60, 30, 120);
+                
+                // Draw lighthouse top (global blue when any lighthouse connected)
+                ctx.fillStyle = (usConnected || londonConnected) ? '#3b82f6' : '#6b7280';
+                ctx.fillRect(canvas.width / 2 - 20, canvas.height / 2 - 70, 40, 20);
+                
+                angle += (usConnected || londonConnected) ? 0.02 : 0.005;
+                requestAnimationFrame(drawLighthouse);
+            }
+            
+            drawLighthouse();
+        }
+        
+        // Fetch real lighthouse data from both stations
+        async function fetchLighthouseData() {
+            // Fetch US data
+            try {
+                const response = await fetch(US_API_URL, {
+                    method: 'GET',
+                    cache: 'no-cache',
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                    }
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.status === 'success' && result.data) {
+                        usLighthouseData = result.data;
+                        usConnected = true;
+                    } else {
+                        usConnected = false;
+                    }
+                } else {
+                    usConnected = false;
+                }
+            } catch (error) {
+                console.error('Failed to fetch US lighthouse data:', error);
+                usConnected = false;
+            }
+
+            // Fetch London data
+            try {
+                const response = await fetch(LONDON_API_URL, {
+                    method: 'GET',
+                    cache: 'no-cache',
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                    }
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.status === 'success' && result.data) {
+                        londonLighthouseData = result.data;
+                        londonConnected = true;
+                    } else {
+                        londonConnected = false;
+                    }
+                } else {
+                    londonConnected = false;
+                }
+            } catch (error) {
+                console.error('Failed to fetch London lighthouse data:', error);
+                londonConnected = false;
+            }
+
+            // Update UI with both datasets
+            lastUpdate = Date.now();
+            updateUI();
+            
+            if (usConnected || londonConnected) {
+                hideDataStatusBanner();
+            } else {
+                showDataStatusBanner('Both lighthouse stations offline', 'error');
+            }
+        }
+        
+        // Update UI with real data from both stations
+        function updateUI() {
+            const statusIndicator = document.getElementById('status-indicator');
+            const statusText = document.getElementById('status-text');
+            const lighthouseStatus = document.getElementById('lighthouse-status');
+            
+            // Primary status based on US lighthouse (this site's main station)
+            if (usConnected && usLighthouseData) {
+                statusIndicator.className = 'w-3 h-3 rounded-full bg-blue-500 pulse-glow';
+                statusText.textContent = 'Live & Broadcasting';
+                lighthouseStatus.textContent = 'LIVE';
+            } else {
+                statusIndicator.className = 'w-3 h-3 rounded-full bg-gray-500';
+                statusText.textContent = 'Offline';
+                lighthouseStatus.textContent = 'OFFLINE';
+            }
+            
+            // Update global network status
+            const usStatus = document.getElementById('us-status');
+            if (usStatus) {
+                usStatus.textContent = usConnected ? 'Online' : 'Offline';
+                usStatus.className = usConnected ? 'text-green-400 text-sm' : 'text-red-400 text-sm';
+            }
+            
+            const londonStatus = document.getElementById('london-status');
+            if (londonStatus) {
+                londonStatus.textContent = londonConnected ? 'Online' : 'Offline';
+                londonStatus.className = londonConnected ? 'text-green-400 text-sm' : 'text-red-400 text-sm';
+            }
+
+            // Update total listeners count
+            const totalListenersEl = document.getElementById('total-listeners');
+            if (totalListenersEl) {
+                const usListeners = (usConnected && usLighthouseData) ? (usLighthouseData.connected_global_listeners || 0) : 0;
+                const londonListeners = (londonConnected && londonLighthouseData) ? (londonLighthouseData.connected_global_listeners || 0) : 0;
+                const totalListeners = usListeners + londonListeners;
+                totalListenersEl.textContent = totalListeners > 0 ? totalListeners.toString() : '—';
+            }
+            
+            updatePerformanceMetrics();
+            updateMainMetrics();
+            updateSecondaryMetrics();
+            updateTerminalDemo();
+        }
+        
+        // Create metric card with global styling
+        function createMetricCard(title, value, unit, subtitle, color, highlight = false, available = true) {
+            const cardClass = available ? '' : 'offline-indicator';
+            const displayValue = available ? value : '—';
+            const displaySubtitle = available ? subtitle : 'No data available';
+            
+            return `
+                <div class="bg-white rounded-xl shadow-lg p-6 border-2 transition-all duration-300 hover:shadow-xl ${highlight ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200'} ${cardClass}">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">${title}</p>
+                            <div class="flex items-baseline mt-1">
+                                <p class="text-3xl font-bold ${color}">${displayValue}</p>
+                                ${unit && available ? `<span class="text-gray-500 ml-1">${unit}</span>` : ''}
+                            </div>
+                            <p class="text-gray-500 text-xs mt-1">${displaySubtitle}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Update performance metrics with US lighthouse data
+        function updatePerformanceMetrics() {
+            const performanceGrid = document.getElementById('performance-grid');
+            
+            if (usConnected && usLighthouseData) {
+                performanceGrid.innerHTML = `
+                    ${createMetricCard(
+                        'Parse Speed',
+                        usLighthouseData.json_parse_time_microseconds?.toFixed(3) || '—',
+                        'µs',
+                        'Real JSON parsing time',
+                        'text-blue-600',
+                        true,
+                        usLighthouseData.json_parse_time_microseconds !== undefined
+                    )}
+                    ${createMetricCard(
+                        'Throughput',
+                        usLighthouseData.average_throughput_mbps?.toFixed(1) || '—',
+                        'MB/s',
+                        'Actual processing power',
+                        'text-purple-600',
+                        false,
+                        usLighthouseData.average_throughput_mbps !== undefined
+                    )}
+                    ${createMetricCard(
+                        'Global Listeners',
+                        usLighthouseData.connected_global_listeners || '—',
+                        '',
+                        'Currently connected',
+                        'text-green-600',
+                        false,
+                        usLighthouseData.connected_global_listeners !== undefined
+                    )}
+                    ${createMetricCard(
+                        'CPU Optimization',
+                        usLighthouseData.cpu_optimization_level || '—',
+                        '',
+                        'System acceleration',
+                        'text-orange-600',
+                        false,
+                        usLighthouseData.cpu_optimization_level !== undefined
+                    )}
+                `;
+            } else {
+                showOfflineMetrics();
+            }
+        }
+        
+        // Show offline metrics
+        function showOfflineMetrics() {
+            const performanceGrid = document.getElementById('performance-grid');
+            performanceGrid.innerHTML = `
+                ${createMetricCard('Parse Speed', '—', 'µs', 'Primary lighthouse offline', 'text-gray-600', true, false)}
+                ${createMetricCard('Throughput', '—', 'MB/s', 'Primary lighthouse offline', 'text-gray-600', false, false)}
+                ${createMetricCard('Global Listeners', '—', '', 'Primary lighthouse offline', 'text-gray-600', false, false)}
+                ${createMetricCard('CPU Optimization', '—', '', 'Primary lighthouse offline', 'text-gray-600', false, false)}
+            `;
+        }
+        
+        // Update main metrics with US lighthouse data
+        function updateMainMetrics() {
+            const mainMetrics = document.getElementById('main-metrics');
+            
+            if (usConnected && usLighthouseData) {
+                const successRate = usLighthouseData.total_fastping_requests && usLighthouseData.successful_parses 
+                    ? ((usLighthouseData.successful_parses / usLighthouseData.total_fastping_requests) * 100).toFixed(1)
+                    : '—';
+                    
+                mainMetrics.innerHTML = `
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-blue-400 mb-2">
+                            ${usLighthouseData.json_parse_time_microseconds?.toFixed(3) || '—'}${usLighthouseData.json_parse_time_microseconds ? 'µs' : ''}
+                        </div>
+                        <div class="text-gray-300">Average Parse Time</div>
+                        <div class="text-sm text-gray-400 mt-1">Real measurement</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-purple-400 mb-2">
+                            ${usLighthouseData.average_throughput_mbps?.toFixed(0) || '—'}${usLighthouseData.average_throughput_mbps ? ' MB/s' : ''}
+                        </div>
+                        <div class="text-gray-300">JSON Throughput</div>
+                        <div class="text-sm text-gray-400 mt-1">Actual processing speed</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-green-400 mb-2">
+                            ${successRate}${successRate !== '—' ? '%' : ''}
+                        </div>
+                        <div class="text-gray-300">Success Rate</div>
+                        <div class="text-sm text-gray-400 mt-1">Real reliability metric</div>
+                    </div>
+                `;
+            } else {
+                // Show offline state
+                mainMetrics.innerHTML = `
+                    <div class="text-center offline-indicator">
+                        <div class="text-4xl font-bold text-gray-400 mb-2">—</div>
+                        <div class="text-gray-400">Parse Time</div>
+                        <div class="text-sm text-gray-500 mt-1">Primary lighthouse offline</div>
+                    </div>
+                    <div class="text-center offline-indicator">
+                        <div class="text-4xl font-bold text-gray-400 mb-2">—</div>
+                        <div class="text-gray-400">Throughput</div>
+                        <div class="text-sm text-gray-500 mt-1">Primary lighthouse offline</div>
+                    </div>
+                    <div class="text-center offline-indicator">
+                        <div class="text-4xl font-bold text-gray-400 mb-2">—</div>
+                        <div class="text-gray-400">Success Rate</div>
+                        <div class="text-sm text-gray-500 mt-1">Primary lighthouse offline</div>
+                    </div>
+                `;
+            }
+        }
+        
+        // Update secondary metrics with US lighthouse data
+        function updateSecondaryMetrics() {
+            const secondaryMetrics = document.getElementById('secondary-metrics');
+            
+            if (usConnected && usLighthouseData) {
+                secondaryMetrics.innerHTML = `
+                    <div>
+                        <div class="text-lg font-semibold text-white">${usLighthouseData.system_uptime_hours?.toFixed(1) || '—'}${usLighthouseData.system_uptime_hours ? 'h' : ''}</div>
+                        <div class="text-sm text-gray-400">System Uptime</div>
+                    </div>
+                    <div>
+                        <div class="text-lg font-semibold text-white">${usLighthouseData.total_beacons_broadcast?.toLocaleString() || '—'}</div>
+                        <div class="text-sm text-gray-400">Beacons Sent</div>
+                    </div>
+                    <div>
+                        <div class="text-lg font-semibold text-white">${usLighthouseData.connected_global_listeners || '—'}</div>
+                        <div class="text-sm text-gray-400">Live Listeners</div>
+                    </div>
+                    <div>
+                        <div class="text-lg font-semibold text-white">${usLighthouseData.cpu_optimization_level || '—'}</div>
+                        <div class="text-sm text-gray-400">CPU Acceleration</div>
+                    </div>
+                `;
+            } else {
+                secondaryMetrics.innerHTML = `
+                    <div class="offline-indicator">
+                        <div class="text-lg font-semibold text-gray-400">—</div>
+                        <div class="text-sm text-gray-500">System Uptime</div>
+                    </div>
+                    <div class="offline-indicator">
+                        <div class="text-lg font-semibold text-gray-400">—</div>
+                        <div class="text-sm text-gray-500">Beacons Sent</div>
+                    </div>
+                    <div class="offline-indicator">
+                        <div class="text-lg font-semibold text-gray-400">—</div>
+                        <div class="text-sm text-gray-500">Live Listeners</div>
+                    </div>
+                    <div class="offline-indicator">
+                        <div class="text-lg font-semibold text-gray-400">—</div>
+                        <div class="text-sm text-gray-500">CPU Acceleration</div>
+                    </div>
+                `;
+            }
+        }
+        
+        // Update terminal demo with US lighthouse data
+        function updateTerminalDemo() {
+            const terminalJson = document.getElementById('terminal-json');
+            const terminalStatus = document.getElementById('terminal-status');
+            
+            if (usConnected && usLighthouseData) {
+                terminalJson.innerHTML = `
+                    <div class="text-cyan-400">{</div>
+                    <div class="text-gray-300 ml-4">"lighthouse_id": "${usLighthouseData.lighthouse_id || 'us-lighthouse-001'}",</div>
+                    <div class="text-gray-300 ml-4">"location": "New York, USA",</div>
+                    <div class="text-gray-300 ml-4">"parse_time_microseconds": ${usLighthouseData.json_parse_time_microseconds?.toFixed(3) || 'null'},</div>
+                    <div class="text-gray-300 ml-4">"throughput_mbps": ${usLighthouseData.average_throughput_mbps?.toFixed(1) || 'null'},</div>
+                    <div class="text-gray-300 ml-4">"cpu_optimization": "${usLighthouseData.cpu_optimization_level || 'unknown'}",</div>
+                    <div class="text-gray-300 ml-4">"global_listeners": ${usLighthouseData.connected_global_listeners || 'null'}</div>
+                    <div class="text-cyan-400">}</div>
+                `;
+                terminalStatus.innerHTML = '⚡ Receiving global real-time data<span class="terminal-cursor">_</span>';
+            } else {
+                terminalJson.innerHTML = '<div class="text-gray-400">Waiting for global lighthouse connection...</div>';
+                terminalStatus.innerHTML = '🔴 Primary lighthouse offline<span class="terminal-cursor">_</span>';
+            }
+        }
+        
+        // Show/hide data status banner
+        function showDataStatusBanner(message, type = 'warning') {
+            const banner = document.getElementById('data-status-banner');
+            const messageEl = document.getElementById('data-status-message');
+            
+            messageEl.textContent = message;
+            banner.classList.remove('hidden');
+            
+            if (type === 'error') {
+                banner.className = 'bg-red-600/20 border border-red-500/50 rounded-lg p-4 mb-8';
+            } else {
+                banner.className = 'bg-yellow-600/20 border border-yellow-500/50 rounded-lg p-4 mb-8';
+            }
+        }
+        
+        function hideDataStatusBanner() {
+            const banner = document.getElementById('data-status-banner');
+            banner.classList.add('hidden');
+        }
+        
+        // Terminal demo toggle
+        function initTerminalDemo() {
+            const btn = document.getElementById('terminal-demo-btn');
+            const demo = document.getElementById('terminal-demo');
+            let isShowing = false;
+            
+            btn.addEventListener('click', () => {
+                isShowing = !isShowing;
+                if (isShowing) {
+                    demo.classList.remove('hidden');
+                    btn.innerHTML = '<i data-lucide="eye-off" class="w-5 h-5"></i><span>Hide Global Terminal Demo</span>';
+                } else {
+                    demo.classList.add('hidden');
+                    btn.innerHTML = '<i data-lucide="eye" class="w-5 h-5"></i><span>Show Live Global Terminal Demo</span>';
+                }
+                lucide.createIcons();
+            });
+        }
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initLighthouseAnimation();
+            initTerminalDemo();
+            
+            // Initial fetch
+            fetchLighthouseData();
+            
+            // Update every 10 seconds
+            setInterval(fetchLighthouseData, 10000);
+        });
+    </script>
+</body>
+</html>
