@@ -1,0 +1,52 @@
+[Unit]
+Description=Ultimate Lighthouse Beacon System Web Server
+Documentation=https://github.com/whisprer/ultimate-lighthouse
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=lighthouse
+Group=lighthouse
+WorkingDirectory=/opt/ultimate-lighthouse
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=WS_PORT=3001
+Environment=LIGHTHOUSE_EXECUTABLE=./litehaus
+Environment=BEACON_IP=138.68.142.181
+Environment=BEACON_PORT=9876
+Environment=LISTENER_PORT=9876
+
+# The main command
+ExecStart=/usr/bin/node server.js
+
+# Restart policy
+Restart=always
+RestartSec=5
+StartLimitInterval=60s
+StartLimitBurst=3
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/ultimate-lighthouse/logs
+ReadWritePaths=/opt/ultimate-lighthouse
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ultimate-lighthouse
+
+# Process management
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
