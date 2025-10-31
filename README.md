@@ -1,12 +1,23 @@
-<div align="center"><h1><br>🏰 The Ultimate Lighthouse Beacon System<br><br></h1><p><i>The Fastest JSON-Powered Network Monitoring in the Universe.</i></p></div>What is this?This is a public engineering showcase—a testament to what's possible when performance, elegance, and meticulous design converge. The Ultimate Lighthouse Beacon System is not just a tool for network monitoring; it's a demonstration of our team's commitment to building software that is at once robust, blazingly fast, and architecturally beautiful.This repository exists to illustrate our philosophy:Performance-First Engineering: We don't just optimize; we build for peak performance from the ground up.Clean, Elegant Design: Our code is as easy to read as it is to run.Problem-First Solutions: We solve real-world problems with complete, self-contained artifacts, not fragmented code.This is a lighthouse that doesn't just shine—it broadcasts sub-microsecond data to the world.🚀 Key Technologies & FeaturesThis system is built on a foundation of bleeding-edge technologies and best practices, ensuring a final product that is both a technical marvel and a joy to use.Unrivaled Performance: Powered by RTC's Jsonifier, we achieve sub-microsecond JSON parsing with compile-time hash maps and zero-copy string operations.SIMD Vectorization: The core engine automatically detects and leverages CPU instructions (Intel AVX-512, AVX2, and ARM NEON) for maximum throughput.Advanced C++ Architecture: A multi-threaded, lock-free system with UDP beacon broadcasting and TCP listening, designed for zero-contention data flow.Cross-Platform & Self-Contained: It compiles and runs immediately on both Windows and Linux, with all dependencies bundled for a fuss-free experience.Polished User Experience: The command-line interface provides beautiful ANSI-colored output, real-time performance metrics, and a "speaking clock" for live status updates.Robust Deployment: Ready for production with a start-lighthouse.sh script, a systemd service file, and a full, step-by-step deployment guide.💻 Getting StartedThis lighthouse is built to be a beacon of simplicity. To get it running, all you need is a C++20 compiler.Build & Run# Clone the repository
-git clone [https://github.com/your-username/ultimate_lighthouse_beacon.git](https://github.com/your-username/ultimate_lighthouse_beacon.git)
-cd ultimate_lighthouse_beacon
+[README.md]
 
-# Build the system
-mkdir build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release
-cmake --build . --config Release
+# Ultimate-Lighthouse
 
-# Run the lighthouse beacon
-./bin/ultimate_lighthouse_beacon
-DeploymentFor a full, detailed guide on how to deploy this lighthouse to a production server, including security hardening and monitoring setup, please see the DEPLOYMENT_GUIDE.md.🤝 ContributingWe welcome contributions that align with our Problem-First Protocol. If it solves a real problem elegantly and performs flawlessly, we want to see it.Real-world Testing: Use tools like nmap and nc to ensure robust network behavior.Performance First: Always optimize for the target architecture.Complete Solutions: Submit pull requests that are fully working, self-contained, and production-ready.📄 LicenseThis project is licensed under a Hybrid License (MIT + CC0). The full text is available in the LICENSE file.Built with ❤️ for RYO Modular & whispr.dev.Special thanks to the RTC Jsonifier team for creating the fastest JSON library ever built."In a world of slow JSON parsers, be the lighthouse that processes at the speed of light."Keep your networks safe and blazingly fast! ⚡🚀
+<p align="center">
+  <a href="https://github.com/whisprer/ultimate-lighthouse/releases"> 
+    <img src="https://img.shields.io/github/v/release/whisprer/ultimate-lighthouse?color=4CAF50&label=release" alt="Release Version"> 
+  </a>
+  <a href="https://github.com/whisprer/ultimate-lighthouse/actions"> 
+    <img src="https://img.shields.io/github/actions/workflow/status/whisprer/ultimate-lighthouse/lint-and-plot.yml?label=build" alt="Build Status"> 
+  </a>
+</p>
+
+![Commits](https://img.shields.io/github/commit-activity/m/whisprer/ultimate-lighthouse?label=commits) 
+![Last Commit](https://img.shields.io/github/last-commit/whisprer/ultimate-lighthouse) 
+![Issues](https://img.shields.io/github/issues/whisprer/ultimate-lighthouse) 
+[![Version](https://img.shields.io/badge/version-3.1.1-blue.svg)](https://github.com/whisprer/ultimate-lighthouse) 
+[![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-lightgrey.svg)](https://www.microsoft.com/windows)
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+<p align="center">
+  <img src="ultimate-lighthouse-banner.png" width="850" alt="Ultimate-Lighthouse Banner">
